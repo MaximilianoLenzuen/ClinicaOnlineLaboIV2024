@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #dfeaed;
+}
+
+.btn-accion {
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 10px;
+    text-align: center;
+    background: linear-gradient(to right, #1ce4c7, #24d0e8);
+    color: white;
+    transition: transform 0.2s ease; /* Transición suave del efecto */
+    box-shadow: 0 4px 8px 0 rgba(28, 228, 199, 0.5), 0 6px 20px 0 rgba(36, 208, 232, 0.5);
+  }
+  
+  .btn-accion:active {
+    transform: scale(0.95); /* Reducir escala al hacer clic */
+  }
+  
+  .rojo {
+    background: linear-gradient(to right, #e41c1c, #a51b1b);
+    box-shadow: 0 4px 8px 0 rgba(228, 28, 28, 0.5), 0 6px 20px 0 rgba(232, 36, 36, 0.5);
+  }
+  
+  .verde {
+    background: linear-gradient(to right, #1ce441, #26d826);
+    box-shadow: 0 4px 8px 0 rgba(28, 228, 65, 0.5), 0 6px 20px 0 rgba(35, 253, 79, 0.5);
+  }
+  
+  .amarillo{
+    background: linear-gradient(to right, #ffd000, #e4c01c);
+    box-shadow: 0 4px 8px 0 rgba(228, 192, 28, 0.5), 0 6px 20px 0 rgba(232, 192, 28, 0.5);
+    
+  }
+  
+  .azul {
+    background: linear-gradient(to right, #0073ff, #1658c9);
+    box-shadow: 0 4px 8px 0 rgba(28, 117, 228, 0.5), 0 6px 20px 0 rgba(28, 81, 232, 0.5);
+  }
+
+  .naranja {
+    background: linear-gradient(to right, #ff9d00, #e68027);
+    box-shadow: 0 4px 8px 0 rgba(243, 156, 18, 0.5), 0 6px 20px 0 rgba(230, 126, 34, 0.5);  
+  }
+
+  @keyframes slideFromBottom {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .slide-from-bottom {
+    animation: slideFromBottom 0.3s ease;
+  }
+
+  @keyframes slideFromTop {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .slide-from-top {
+    animation: slideFromTop 0.3s ease;
+  }

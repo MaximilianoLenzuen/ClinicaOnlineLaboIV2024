@@ -1,0 +1,29 @@
+<div class="login-container">
+    <form>
+        <h2>Agregar especialidad</h2>
+        <div *ngIf="errMsg" class="err-msg-top"> {{errMsg}} </div>
+        <div class="inputBox">
+            <select name="especialidad" [(ngModel)]="especialidadSeleccionada" required (change)="onEspecialidadChange($event)">
+                <option value="" disabled selected style="color: #838383;">Selecciona tu especialidad</option>
+                <option value="Cardiología">Cardiología</option>
+                <option value="Dermatología">Dermatología</option>
+                <option value="Endocrinología">Endocrinología</option>
+                <option value="Gastroenterología">Gastroenterología</option>
+                <option value="Ginecología">Ginecología</option>
+                <option value="Neurología">Neurología</option>
+                <option value="Odontología">Odontología</option>
+                <option value="Oftalmología">Oftalmología</option>
+                <option value="otra">Otra</option>
+            </select> 
+            <i class="backInput" [ngClass]="{'input-error': errorStates.especialidad}"></i>
+        </div>
+
+        <div class="inputBox" *ngIf="otraEspecialidad">
+            <input type="text" name="otraEspecialidad" #especialidadPersonalizadaInput [(ngModel)]="especialidadPersonalizada" ngModel required>
+            <span>Ingrese su especialidad</span>
+            <i class="backInput" [ngClass]="{'input-error': errorStates.especialidadPersonalizada}"></i>
+        </div>
+
+        <button type="button" (click)="onSubmit()" class="btn-crear">Agregar</button>
+    </form>
+</div>

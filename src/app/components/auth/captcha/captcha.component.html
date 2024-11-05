@@ -1,0 +1,28 @@
+<div class="captcha-container" *ngIf="!captchaVerified">
+  <div class="captcha-header">
+    <i class='bx bxs-shield'></i> <!-- Icono de Boxicons -->
+    <h2 class="captcha-title">Verificación de seguridad</h2>
+  </div>
+  <div class="captcha-content">
+    <p>{{ operand1 }} {{ operator }} {{ operand2 }} = ?</p>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+          <input type="text" [(ngModel)]="userAnswer" class="captcha-input" placeholder="Ingrese la respuesta">
+        </div>
+        <div class="col-lg-4">
+          <div (click)="verifyCaptcha()" class="btn-accion" style="cursor: pointer;">Verificar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="captcha-verified-content" *ngIf="captchaVerified">
+  <div class="captcha-verified-icon">
+    <i class='bx bxs-check-circle'></i>
+  </div>
+  <div class="captcha-verified-text">
+    <p>CAPTCHA verificado correctamente.</p>
+  </div>
+</div>

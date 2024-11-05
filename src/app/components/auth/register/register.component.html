@@ -1,0 +1,133 @@
+<app-loading [isLoading]="this.isLoading"></app-loading>
+<div class="login-container">
+    @if (res) {
+        <form>
+            <h2>Crear cuenta</h2>
+            <p>Cuenta creada exitosamente!</p>
+            <p>{{msgRes}}</p>
+            <input type="submit" (click)="this.register.emit(false); (this.redirigir = false);" value="Volver a iniciar sesión">
+        </form>
+    } @else {
+        <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+            <div *ngIf="selectedPaciente != undefined" class="btn-cerrar" (click)="this.selectedPaciente = undefined">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
+                  </svg>
+            </div>
+            <h2>Crear cuenta</h2>
+            <div *ngIf="selectedPaciente == undefined" class="container">
+                <div class="row">
+                    <div class="btnSeleccion btnPaciente" (click)="this.selectedPaciente = true">
+                        <i class='bx bxs-user-badge'></i>
+                    </div>
+                    <div class="btnSeleccion btnEspecialista" (click)="this.selectedPaciente = false">
+                        <i class='bx bxs-injection'></i>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="selectedPaciente != undefined">
+                <div *ngIf="errMsg" class="err-msg-top"> {{errMsg}} </div>
+                <div class="inputBox">
+                    <input type="text" name="nombre" ngModel required>
+                    <span>Nombre</span>
+                    <i class="backInput" [ngClass]="{'input-error': errorStates.nombre}"></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="apellido" ngModel required>
+                    <span>Apellido</span>
+                    <i class="backInput" [ngClass]="{'input-error': errorStates.apellido}"></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="edad" ngModel required>
+                    <span>Edad</span>
+                    <i class="backInput" [ngClass]="{'input-error': errorStates.edad}"></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="dni" ngModel required>
+                    <span>DNI</span>
+                    <i class="backInput" [ngClass]="{'input-error': errorStates.dni}"></i>
+                </div>
+                <div class="inputBox">
+                    <input style="left: 150px; top: 3px;" type="file" name="img" id="img" accept="image/*" (change)="onImageSelected($event, 'img')" ngModel required>
+                    <span>Imagen de perfil 1</span>
+                    <i class="backInput" [ngClass]="{'input-error': errorStates.img}"></i>
+                </div>
+                @if (this.selectedPaciente) {
+                    <div class="inputBox">
+                        <input style="left: 150px; top: 3px;" type="file" name="img2" id="img2" accept="image/*" (change)="onImageSelected($event, 'img2')" ngModel required>
+                        <span>Imagen de perfil 2</span>
+                        <i class="backInput" [ngClass]="{'input-error': errorStates.img2}"></i>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" name="obraSocial" ngModel required>
+                        <span>Obra social</span>
+                        <i class="backInput" [ngClass]="{'input-error': errorStates.obraSocial}"></i>
+                    </div>
+                } @else {
+                    <div class="inputBox" (click)="this.crearEspecialidad = true">
+                        <input type="text" name="especialidades" 
+                               [value]="mostrarEspecialidades()" required [readonly]="crearEspecialidad">
+                        @if (!this.especialidades) {
+                            <span>Ingrese su especialidad</span>
+                        } @else {
+                            <span>Toque nuevamente para agregar otra especialidad</span>
+                        }
+                        <i class="backInput" [ngClass]="{'input-error': errorStates.especialidad}"></i>
+                    </div>
+
+                    @if (this.especialidades) {
+                        <button type="button" (click)="this.eliminarEspecialidad = true" class="btn-crear">Eliminar especialidad</button>
+                    }
+                    
+                    @if (eliminarEspecialidad) {
+                        <app-listado-especialidades
+                        [especialidades]="especialidades"
+                        (especialidadesActualizadas)="actualizarEspecialidades($event)"
+                      ></app-listado-especialidades>
+                                          }
+
+                    @if (crearEspecialidad) {
+                        <app-seleccionar-especialidad [especialidades]="especialidades" (especialidadCreada)="onEspecialidadCreada($event)"></app-seleccionar-especialidad>
+                    }
+                }
+                <div class="inputBox">
+                    <div *ngIf="errMsgEmail" class="err-msg"> {{errMsgEmail}} </div>
+                    <input type="text" name="email" ngModel required>
+                    <span>Correo Electronico</span>
+                    <i class="backInput" [ngClass]="{'input-error': errorStates.email}"></i>
+                </div>
+                <div class="inputBox">
+                    <div *ngIf="errMsgPass" class="err-msg"> {{errMsgPass}} </div>
+                    <input [type]="showPassword ? 'text' : 'password'" name="password" ngModel required>
+                    <span>Contraseña</span>
+                    <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" (click)="togglePasswordVisibility()">
+                        <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
+                        <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
+                    </svg>
+                    <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" (click)="togglePasswordVisibility()">
+                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                    </svg>
+                    <i class="backInput" [ngClass]="{'input-error': errorStates.pass}"></i>
+                </div>
+                <div class="inputBox" style="margin-bottom: 35px;">
+                    <div *ngIf="errMsgPass2" class="err-msg"> {{errMsgPass2}} </div>
+                    <input [type]="showPassword ? 'text' : 'password'" name="confirmPassword" ngModel required>
+                    <span>Repite la Contraseña</span>
+                    <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" (click)="togglePasswordVisibility()">
+                        <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
+                        <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
+                    </svg>
+                    <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" (click)="togglePasswordVisibility()">
+                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                    </svg>
+                    <i class="backInput" [ngClass]="{'input-error': errorStates.pass2}"></i>
+                </div>
+                <app-captcha (verificacion)="this.captcha = $event"></app-captcha>
+                <input style="margin-top: 30px;" type="submit" value="Crear cuenta">
+            </div>
+            <p>Ya tienes una cuenta? <span (click)="this.register.emit(false);">Inicia sesión</span></p>
+        </form>
+    }
+</div>

@@ -1,0 +1,111 @@
+<app-loading [isLoading]="this.isLoading"></app-loading>
+<div class="box-principal">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" style="padding: 0; padding-top: 10px; padding-bottom: 30px;">
+                <div class="nav-header">
+                    <img class="logo-img" src="favicon.png" alt="+">
+                    <h5>Clinica OnLine</h5>
+                </div>
+                <div class="nav-content">
+                    <p>GENERAL</p>
+                        <div 
+                        class="nav-item" 
+                        [class.selected]="selectedNavItem === 'dashboard'"
+                        (click)="selectNavItem('dashboard')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-grid-fill" viewBox="0 0 16 16">
+                                <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z"/>
+                            </svg>
+                            Dashboard
+                        </div>
+                        @if (this.userType == "especialista" || this.userType == "paciente") {
+                            <div 
+                            class="nav-item" 
+                            [class.selected]="selectedNavItem === 'mis-turnos'"
+                            (click)="selectNavItem('mis-turnos')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-alarm-fill" viewBox="0 0 16 16">
+                                <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5m2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.04 8.04 0 0 0 .86 5.387M11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.04 8.04 0 0 0-3.527-3.527"/>
+                              </svg>
+                                Mis turnos
+                            </div>
+                        }
+                        @if (this.userType == "especialista") {
+                            <div 
+                            class="nav-item" 
+                            [class.selected]="selectedNavItem === 'seccion-pacientes'"
+                            (click)="selectNavItem('seccion-pacientes')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-arms-up" viewBox="0 0 16 16">
+                                    <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                                    <path d="m5.93 6.704-.846 8.451a.768.768 0 0 0 1.523.203l.81-4.865a.59.59 0 0 1 1.165 0l.81 4.865a.768.768 0 0 0 1.523-.203l-.845-8.451A1.5 1.5 0 0 1 10.5 5.5L13 2.284a.796.796 0 0 0-1.239-.998L9.634 3.84a.7.7 0 0 1-.33.235c-.23.074-.665.176-1.304.176-.64 0-1.074-.102-1.305-.176a.7.7 0 0 1-.329-.235L4.239 1.286a.796.796 0 0 0-1.24.998l2.5 3.216c.317.316.475.758.43 1.204Z"/>
+                                </svg>
+                                Pacientes
+                            </div>
+                        }
+                        @if (this.userType == "admin" || this.userType == "paciente") {
+                            <div 
+                            class="nav-item" 
+                            [class.selected]="selectedNavItem === 'solicitar-turno'"
+                            (click)="selectNavItem('solicitar-turno')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
+                                    <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7"/>
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                                </svg>
+                                Solicitar turno
+                            </div>
+                        }
+                        @if (this.userType == "admin") {
+                            <div 
+                            class="nav-item" 
+                            [class.selected]="selectedNavItem === 'turnos'"
+                            (click)="selectNavItem('turnos')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                    <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                                </svg>
+                                Turnos
+                            </div>
+                            <div 
+                            class="nav-item" 
+                            [class.selected]="selectedNavItem === 'seccion-usuarios'"
+                            (click)="selectNavItem('seccion-usuarios')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                                </svg>
+                                Usuarios
+                            </div>
+                        }
+                        <p style="margin-top: 30px;">HERRAMIENTAS</p>
+                        <div 
+                        class="nav-item logout-item" 
+                        [class.selected]="selectedNavItem === 'logout'"
+                        (click)="cerrarSesion()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 0 1 1-1h3.5A1.5 1.5 0 0 1 16 2.5v11a1.5 1.5 0 0 1-1.5 1.5H11a1 1 0 0 1-1-1v-1a1 1 0 0 1 2 0v1h3.5a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5H11a1 1 0 0 1-1-1V2zm-1 5.5a.5.5 0 0 0-.5-.5H3.707l2.147-2.146a.5.5 0 0 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L3.707 8H8.5a.5.5 0 0 0 .5-.5z"/>
+                        </svg>
+                        Cerrar sesión
+                    </div>
+                    
+                        <div 
+                        class="nav-item" 
+                        [class.selected]="selectedNavItem === 'perfil'"
+                        (click)="selectNavItem('perfil')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                            </svg>
+                            Perfil
+                        </div>
+                    </div>
+            </div>
+            <div class="col-lg-10">
+                @switch (this.selectedNavItem) {
+                    @case ("dashboard") {
+                        <app-dashboard [user]="userReal" [ultimoTurno]="utlimoTurno" (click)="selectNavItem($event)"></app-dashboard>
+                    }
+                    @case ("seccion-usuarios") {
+                        <app-seccion-usuarios></app-seccion-usuarios>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

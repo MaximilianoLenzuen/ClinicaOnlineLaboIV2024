@@ -1,0 +1,14 @@
+<div class="box-principal">
+    <div class="container-fluid">
+        <img class="logo-img" src="favicon.png" alt="+">
+        <h5>Clinica OnLine</h5>
+        <h1>Bienvenido!</h1>
+    </div>
+    <div class="form-container container-fluid" style="padding-top: 0; padding-bottom: 0;">
+        @if (!register) {
+            <app-login [redirect]="false" (register)="togleForm($event)"></app-login>
+        } @else {
+            <app-register (register)="togleForm($event)"></app-register>
+        }
+    </div>
+</div>

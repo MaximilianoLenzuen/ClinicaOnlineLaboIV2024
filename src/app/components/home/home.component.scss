@@ -1,0 +1,124 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    width: 100%;
+    background-size: cover;
+}
+
+.logout-item {
+    color: #ff0000; /* Cambia el color del texto e icono */
+}
+.logout-item:hover {
+    color: #cc0000; /* Color al pasar el mouse */
+}
+
+.box-principal {
+    position: relative;
+    width: 95%;
+    height: 90vh;
+    border-radius: 40px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(15, 15, 15, 0.1);
+    transition: height 0.3s ease; /* Opcional: para una transición suave de altura */
+    color: #3C3E46;
+}
+
+.container-fluid {
+    text-align: center;
+    height: 100%;
+
+    .row {
+        height: 100%;
+    }
+    h1 {
+        margin-top: 30px;
+        font-size: 4em;
+    }
+}
+
+.form-container {
+    border-radius: 40px;
+    background-color: #ffffff;
+}
+
+.logo-img {
+    width: 70px;
+}
+
+.nav-header {
+    color: #272e41;
+    padding: 30px 0px;
+
+    h5 {
+        margin-top: 10px;
+        font-weight: 700;
+    }
+}
+
+.nav-content {
+    margin-top: 20px;
+    p {
+        position: relative;
+        font-size: 13px;
+        font-weight: 700;
+        color: #aaabb3;
+        letter-spacing: 1px;
+        text-align: start;
+        left: 30px;
+        margin-bottom: 10px;
+    }
+}
+
+
+.nav-item {
+    color: #272e41;
+    display: flex;
+    justify-content: start;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    font-size: 13px;
+    align-items: center;
+    text-align: center;
+    svg {
+        margin-right: 15px;
+    }
+    position: relative;
+    padding: 20px 0px 20px 30px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.nav-item.selected {
+    background-color: #eefffc; /* Optional: Change background color on selection */
+    color: #22e1bf;
+}
+
+.nav-item.selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px; /* Adjust to match the padding of .nav-item */
+    bottom: 10px; /* Adjust to match the padding of .nav-item */
+    width: 5px; /* Width of the bar */
+    background-color: #22e1bf;
+    border-top-right-radius: 5px; /* Rounded corners on the inside */
+    border-bottom-right-radius: 5px; /* Rounded corners on the inside */
+}
+
+.nav-item svg {
+    margin-right: 10px;
+    fill: #272e41; /* Default fill color */
+    transition: fill 0.3s;
+}
+
+.nav-item.selected svg {
+    fill: #22e1bf;
+}
+
+.col-lg-10 {
+    background: linear-gradient(to right, #f1f7f9 , #fdfefe);
+    border-radius: 0px 40px 40px 0px;
+}

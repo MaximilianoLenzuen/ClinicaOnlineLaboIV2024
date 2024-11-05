@@ -1,0 +1,60 @@
+<h2>Usuarios Registrados</h2>
+
+<div *ngIf="users$" class="tabla-container">
+    <div class="card-container">
+        <div class="card" *ngFor="let usuario of users$">
+            <div class="card-header">
+                <img [src]="usuario.img || 'assets/default-avatar.png'" alt="perfil" class="usuario-avatar">
+                <div class="usuario-info">
+                    <span>{{ usuario.nombre }}</span>
+                    <span>{{ usuario.apellido }}</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <!-- Detalles del usuario -->
+                <div>
+                    <strong>Edad:</strong> {{ usuario.edad }} <br>
+                    <strong>Tipo:</strong> {{ usuario.userType }} <br>
+                    <strong>Email:</strong> {{ usuario.email }} <br>
+                    @if (usuario.userType === "paciente") {
+                        <strong>Obra Social:</strong> {{ usuario.obraSocial }} <br>
+                    } @else if (usuario.userType === "especialista") {
+                        <strong>Especialidad:</strong> {{ mostrarEspecialidades(usuario.especialidad) }} <br>
+                        <strong>Verificado por admin:</strong> {{ usuario.verificadoAdmin ? 'Sí' : 'No' }}
+
+                    }
+                </div>
+                <!-- Acciones -->
+                <div class="acciones">
+                    @if (usuario.userType === "paciente") {
+                    } @else if (usuario.userType === "especialista") {
+                        @if (usuario.verificadoAdmin) {
+                            <button class="btn-accion rojo" (click)="toggleHabilitacion(usuario, false)">Inhabilitar</button>
+                        } @else {
+                            <button class="btn-accion" (click)="toggleHabilitacion(usuario, true)">Habilitar</button>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="position: absolute; bottom: 10px;">
+        <button class="btn-accion" (click)="crearAdministrador()" >Crear administrador</button>
+    </div>
+</div>
+
+<div *ngIf="mostrarForm" class="form-crear" >
+    <app-crear-administrador (creo)="seCreoAdmin($event)" [class.slide-from-bottom]="mostrarForm"></app-crear-administrador>
+</div>
+
+<div class="form-crear" *ngIf="historialUsuarioID">
+    <div class="container-historial-clinico" [class.slide-from-top]="historialUsuarioID">
+        <div class="container-fluid" style="display: flex; align-items: start; position: absolute; padding: 0;">
+            <div style="cursor: pointer;" (click)="this.historialUsuarioID = ''">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>

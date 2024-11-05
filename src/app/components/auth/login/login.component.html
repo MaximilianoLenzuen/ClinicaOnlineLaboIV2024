@@ -1,0 +1,81 @@
+<app-loading [isLoading]="this.isLoading"></app-loading>
+<div class="login-container">
+    <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+        <h2>Iniciar sesión</h2>
+        <div *ngIf="errMsg" class="err-msg-top"> {{errMsg}} </div>
+        <div class="inputBox">
+            <div *ngIf="errMsgEmail" class="err-msg"> {{errMsgEmail}} </div>
+            <input type="text" name="email" [(ngModel)]="ngEmail" required>
+            <span>Correo Electronico</span>
+            <i class="backInput" [ngClass]="{'input-error': errorStates.email}"></i>
+        </div>
+        <div class="inputBox">
+            <div *ngIf="errMsgPass" class="err-msg"> {{errMsgPass}} </div>
+            <input [type]="showPassword ? 'text' : 'password'" name="password" [(ngModel)]="ngPass" required>
+            <span>Contraseña</span>
+            <svg *ngIf="!showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" (click)="togglePasswordVisibility()">
+                <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
+                <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
+            </svg>
+            <svg *ngIf="showPassword" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" (click)="togglePasswordVisibility()">
+                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+            </svg>
+            <i class="backInput" [ngClass]="{'input-error': errorStates.pass}"></i>
+        </div>
+        <div class="links">
+            <a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
+        </div>
+        <input type="submit" value="Iniciar sesión">
+        <p>No tienes una cuenta? <span (click)="this.register.emit(true);">Registrate</span></p>
+        <div class="favButtonContainer" >
+            <div class="container" [ngClass]="{'show': accesoRapido, 'hide': !accesoRapido}">
+                <div class="favButton grey" (click)="autoFill('user1')">
+                    @if (userImg[0]) {
+                        <img [src]="userImg[0].img" alt="">
+                    } @else {
+                        <i class='bx bxs-injection'></i>
+                    }
+                </div>
+                <div class="favButton grey" (click)="autoFill('user2')" >
+                    @if (userImg[4]) {
+                        <img [src]="userImg[4].img" alt="">
+                    } @else {
+                        <i class='bx bxs-user-badge' ></i>
+                    }
+                </div>
+                <div class="favButton grey" (click)="autoFill('user3')">
+                    @if (userImg[2]) {
+                        <img [src]="userImg[2].img" alt="">
+                    } @else {
+                        <i class='bx bxs-shield-minus' ></i>
+                    }
+                </div>
+                <div class="favButton grey" (click)="autoFill('user4')">
+                    @if (userImg[3]) {
+                        <img [src]="userImg[3].img" alt="">
+                    } @else {
+                       <i class='bx bxs-injection'></i>
+                    }
+                </div>
+                <div class="favButton grey" (click)="autoFill('user5')" >
+                    @if (userImg[5]) {
+                        <img [src]="userImg[5].img" alt="">
+                    } @else {
+                       <i class='bx bxs-user-badge' ></i>
+                    }
+                </div>
+                <div class="favButton grey" (click)="autoFill('user6')">
+                    @if (userImg[1]) {
+                        <img [src]="userImg[1].img" alt="">
+                    } @else {
+                      <i class='bx bxs-shield-minus' ></i>
+                    }
+                </div>
+            </div>
+            <div class="favButton" (click)="toggleAccesoRapido()" style="z-index: 10000;">
+                <i class='bx bxs-user-plus'></i>
+            </div>
+        </div>
+    </form>
+</div>

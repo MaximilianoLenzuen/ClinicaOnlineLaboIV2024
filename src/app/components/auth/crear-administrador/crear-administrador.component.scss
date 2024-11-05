@@ -1,0 +1,283 @@
+.login-container {
+    position: relative;
+    width: 100%;
+    max-height: auto;  /* Permite que el contenedor crezca */
+    border-radius: 15px;
+    overflow: hidden;
+    transition: height 0.3s ease; /* Opcional: para una transición suave de altura */
+}
+
+.login-container form {
+    border-radius: 15px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+}
+
+.login-container form h2 {
+    font-weight: 500;
+    text-align: center;
+    letter-spacing:  0.1em;
+}
+
+.login-container form .inputBox {
+    width: 100%;
+    position: relative;
+    margin-top: 35px;
+}
+
+.login-container form .inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: white;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 3;
+}
+
+.login-container form .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    pointer-events: none;
+    color: #838383;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+.login-container form .inputBox input:valid ~ span,
+.login-container form .inputBox input:focus ~ span {
+    font-size: 0.75em;
+    transform: translateY(-34px);
+} 
+
+.login-container form .inputBox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #1ce4c7, #24d0e8);
+    border-radius: 10px;
+    overflow: hidden;
+    transition:  0.5s;
+    pointer-events: none;
+    box-shadow: 0 4px 8px 0 rgba(28, 228, 199, 0.5), 0 6px 20px 0 rgba(36, 208, 232, 0.5);
+}
+
+.login-container form .inputBox input:valid ~ i,
+.login-container form .inputBox input:focus ~ i,
+.login-container form .inputBox select:valid ~ i,
+.login-container form .inputBox select:focus ~ i {
+    height: 44px;
+}
+
+.login-container form .inputBox input[type="file"]:valid,
+.login-container form .inputBox input[type="file"]:focus {
+    left: 0 !important;
+}
+
+.login-container form .links {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+.login-container form .links a {
+    margin: 10px 0;
+    font-size: 0.75em;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login-container form .links a:hover,
+.login-container form .links a:nth-child(2) {
+    color: black;
+}
+
+.login-container form input[type="submit"] {
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background: linear-gradient(to right, #1ce4c7, #24d0e8);
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 15px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 10px;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(28, 228, 199, 0.5), 0 6px 20px 0 rgba(36, 208, 232, 0.5);
+}
+
+
+
+.login-container form input[type="submit"]:active {
+    opacity: 0.8;
+}
+
+.login-container p {
+    color: black;
+    text-align: center;
+    padding-top: 10px;
+    
+}
+
+.login-container p span {
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(to right, #05B79F, #31C0CE);
+    -webkit-background-clip: text; /* Propiedad para aplicar el fondo solo al texto */
+    background-clip: text;
+    color: transparent; /* Hace que el texto sea transparente para mostrar el fondo de degradado */
+}
+
+
+.login-container p span:hover,
+.login-container p span:nth-child(2) {
+    opacity: 0.7;
+}
+
+.login-container form .inputBox svg {
+    position: absolute;
+    right: 10px;
+    bottom: 12px;
+    z-index: 4;
+    cursor: pointer;
+    color: #3C3E46;
+    transition:  0.5s;
+}
+
+.login-container form .inputBox input:valid ~ svg,
+.login-container form .inputBox input:focus ~ svg {
+    color: white;
+} 
+
+.err-msg {
+    font-size: small;
+    position: absolute;
+    bottom: -20px;
+    color: red;
+    font-weight: 500;
+}
+
+.input-error {
+    background: linear-gradient(to right, #e41c1c, #a51b1b) !important;
+    box-shadow: 0 4px 8px 0 rgba(228, 28, 28, 0.5), 0 6px 20px 0 rgba(232, 36, 36, 0.5) !important;
+}
+
+.err-msg-top {
+    padding: 10px;
+    text-align: center;
+    color: red;
+    font-weight: 500;
+}
+
+.arrowVolver {
+    position: absolute;
+    color: black;
+    top: 26px;
+    left: 22px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, color 0.3s ease, text-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.arrowVolver:hover {
+    text-shadow: 0 0 5px #05B79F, /* Small cyan glow */
+                 0 0 10px #05B79F, /* Medium orange glow */
+                 0 0 15px #05B79F; /* Larger orange glow for depth */
+    filter: drop-shadow(0 0 3px #05B79F) drop-shadow(0 0 26px #05B79F) drop-shadow(0 0 29px #05B79F);
+}
+
+.arrowDown {
+    position: absolute;
+    color: black;
+    bottom: 10px;
+    left: 175px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out, color 0.3s ease, text-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.arrowDown:hover {
+    text-shadow: 0 0 5px #05B79F, /* Small cyan glow */
+                 0 0 10px #05B79F, /* Medium orange glow */
+                 0 0 15px #05B79F; /* Larger orange glow for depth */
+    filter: drop-shadow(0 0 3px #05B79F) drop-shadow(0 0 26px #05B79F) drop-shadow(0 0 29px #05B79F);
+}
+
+.container {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    margin-top: -30px;
+}
+
+.container button {
+    margin: 0px 10px;
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background-color: transparent; /* Transparent background to emphasize neon effect */
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: box-shadow 0.3s ease-in-out, color 0.3s ease, text-shadow 0.3s ease-in-out; /* Smooth transition for hover effects */
+    color: black; /* Initial color, matching the hover state for consistency */
+    text-shadow: none; /* No text shadow initially */
+}
+.container button:hover {
+    text-shadow: 0 0 5px #cacaca, /* Small cyan glow */
+                 0 0 10px #cacaca, /* Medium orange glow */
+                 0 0 15px #cacaca; /* Larger orange glow for depth */
+    filter: drop-shadow(0 0 3px #05b79f79) drop-shadow(0 0 26px #05b79f79) drop-shadow(0 0 29px #05b79f79);
+}
+
+select {    
+    position: relative;
+    border: none;
+    color: #838383;
+    font-size: 1em;
+    width: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 100;
+    padding: 15px 7px 13px;
+}
+
+option {
+    color: #838383;
+}
+
+.login-container form .inputBox select:valid,
+.login-container form .inputBox select:focus{
+    color: white;
+} 
+
+.btn-cerrar {
+    z-index: 20;
+    display: flex;
+    width: 100%;
+    align-items: start;
+    cursor: pointer;
+}

@@ -1,0 +1,12 @@
+<div class="bg" *ngIf="isLoading"></div>
+<div *ngIf="isLoading" class="spinner-container">
+    <svg class="spinner" viewBox="0 0 50 50">
+        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke="url(#spinnerGradient)" stroke-width="5"></circle>
+        <defs>
+        <linearGradient id="spinnerGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#24cee7; stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1be3c4; stop-opacity:1" />
+        </linearGradient>
+        </defs>
+    </svg>
+</div>
