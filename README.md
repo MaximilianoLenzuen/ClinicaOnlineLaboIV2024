@@ -1,5 +1,5 @@
 <div align="center" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
-    <img src="/public/favicon.png" alt="Logo de la Clínica Online" width="200" height="200">
+    <img src="https://firebasestorage.googleapis.com/v0/b/clinicaonlinelaboiv-f6b94.firebasestorage.app/o/readme%2Ffavicon.png?alt=media&token=00804a95-09fb-457e-a321-011c02470002" alt="Logo de la Clínica Online" width="200" height="200">
     <h1 style="margin-top: 10px; font-weight: 700;">Clinica OnLine</h1>
 </div>
 
